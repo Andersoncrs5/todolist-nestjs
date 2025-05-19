@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, VersionColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Todo {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   title: string;
@@ -13,4 +13,14 @@ export class Todo {
 
   @Column({ default: false })
   completed: boolean;
+
+  @VersionColumn()
+  version: number = 0;
+
+  @CreateDateColumn()
+  createdAt?: Date
+
+  @UpdateDateColumn()
+  updatedAt?: Date
+
 }
